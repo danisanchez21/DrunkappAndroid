@@ -48,8 +48,8 @@ public class ProgressBarFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_progress_bar, container, false);
-        FloatingActionButton myFab = (FloatingActionButton) v.findViewById(R.id.addDrinkButton);
-        myFab.setOnClickListener(clickReact);
+        FloatingActionButton addDrinkFAB = (FloatingActionButton) v.findViewById(R.id.addDrinkButton);
+        addDrinkFAB.setOnClickListener(clickReact);
         // Inflate the layout for this fragment
         return v;
     }

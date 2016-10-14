@@ -3,12 +3,17 @@ package com.cognitioco.drunkster.com.cognitioco.drunkster.view;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cognitioco.drunkster.R;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Drink;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Registry;
+
+import java.util.Date;
 
 
 /**
@@ -66,7 +71,12 @@ public class AddDrinkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_drink, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_add_drink, container, false);
+        FloatingActionButton addFab = (FloatingActionButton) v.findViewById(R.id.acceptValues);
+        addFab.setOnClickListener(onClickListener);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -75,6 +85,19 @@ public class AddDrinkFragment extends Fragment {
             mListener.OnAddDrinkInteraction(uri);
         }
     }
+
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onButtonPressed(null);
+            Registry reg = new Registry();
+            reg.setCurrentBAC(0.04);
+            reg.setDrink(new Drink(0));
+            reg.setNumOfDrinks(4);
+            reg.setTimeTaken(new Date());
+
+        }
+    };
 
     @Override
     public void onAttach(Context context) {
@@ -107,4 +130,6 @@ public class AddDrinkFragment extends Fragment {
         // TODO: Update argument type and name
         void OnAddDrinkInteraction(Uri uri);
     }
+
+
 }

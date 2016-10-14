@@ -1,4 +1,9 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.view;
+import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenu;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.view.View;
 
 import android.net.Uri;
@@ -11,9 +16,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SlidingDrawer;
 import android.widget.TextView;
 
 import com.cognitioco.drunkster.R;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Drink;
 
 
 public class BaseClass extends AppCompatActivity implements
@@ -21,6 +30,8 @@ ProgressBarFragment.OnMainFragmentInteractionListener , AddDrinkFragment.OnAddDr
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
+    AddDrinkFragment addDrink;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,26 @@ ProgressBarFragment.OnMainFragmentInteractionListener , AddDrinkFragment.OnAddDr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity);
 
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        // Check is it is the first run of the application annd if it is run database code and show t
+        // tutorial
+        //
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        prefs = getSharedPreferences("com.cognitioco.drunkster", MODE_PRIVATE);
+
+        if(prefs.getBoolean("firstRun",true)){
+
+        }else{
+            //Do something
+            prefs.edit().putBoolean("firstRun",false).commit();
+
+            Drink dr = new Drink();
+            dr.setDrinkProof(10);
+            dr.setName("Test Drink");
+            dr.setVolume(12);
+            dr.save();
+        }
         ////////////////////////////////////////////////////////////////////////////////////////////
         /// Inititalization
         ///
@@ -39,6 +70,8 @@ ProgressBarFragment.OnMainFragmentInteractionListener , AddDrinkFragment.OnAddDr
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer);
         setSupportActionBar(toolbar);
+
+
 
 
         final ActionBar bar = getSupportActionBar();
@@ -58,6 +91,8 @@ ProgressBarFragment.OnMainFragmentInteractionListener , AddDrinkFragment.OnAddDr
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
+        setNavigationDrawerComponents((NavigationView) findViewById(R.id.mainNavigationView));
+
         if(findViewById(R.id.fragmentFrame) != null){
 
             ProgressBarFragment mainFragment = new ProgressBarFragment();
@@ -68,35 +103,22 @@ ProgressBarFragment.OnMainFragmentInteractionListener , AddDrinkFragment.OnAddDr
 
     }
 
-    @Override
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         int id = item.getItemId();
-        //TextView textV = (TextView) findViewById(R.id.TextBox);
 
-        switch (id) {
 
-            case R.id.addDrink:
-               // textV.setText("Adding Drink");
-                break;
-            case R.id.registryButtonMenu:
-              //  textV.setText("Adding Drink");
-                break;
-            case R.id.historyButton:
-               //textV.setText("Adding Drink");
-                break;
-            case R.id.settingsButton:
-               // textV.setText("Adding Drink");
-                break;
-        }
-
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -109,11 +131,30 @@ ProgressBarFragment.OnMainFragmentInteractionListener , AddDrinkFragment.OnAddDr
         //do nothing for now
     }
 
+    private void setNavigationDrawerComponents(NavigationView view){
+        view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int id  = item.getItemId();
+                if(id == R.id.addDrink){
+                    onAddDrinkPressed();
+                    item.setChecked(true);
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                }
+                return false;
+            }
+        });
+    }
+
     @Override
     public void onAddDrinkPressed() {
-        AddDrinkFragment addDrink = new AddDrinkFragment();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame,addDrink).addToBackStack(null).commit();
+        //if(addDrink == null) {
+            addDrink = new AddDrinkFragment();
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, addDrink).addToBackStack(null).commit();
+       // }
 
     }
 

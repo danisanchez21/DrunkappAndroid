@@ -1,7 +1,12 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,6 +17,8 @@ public class Registry extends SugarRecord {
 
     private Drink drink;
     private double currentBAC;
+    private String timeTakenDB;
+    @Ignore
     private Date timeTaken;
     private int numOfDrinks;
 
@@ -57,6 +64,10 @@ public class Registry extends SugarRecord {
     }
 
     public void setTimeTaken(Date timeTaken) {
+
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+
+
         this.timeTaken = timeTaken;
     }
 
