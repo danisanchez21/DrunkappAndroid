@@ -1,0 +1,111 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cognitioco.drunkster.com.cognitioco.drunkster.view.ProgressBarFragment"
+    android:background="@android:color/transparent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="100"
+        android:progressDrawable="@drawable/circle_progress_background"
+        android:layout_gravity="center" />
+
+    <ProgressBar
+        android:id="@+id/circle_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:max="100"
+        android:rotation="-90"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/circle_progress_foreground"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="186dp"
+        android:layout_height="248dp"
+        app:srcCompat="@mipmap/ic_readytoparty"
+        android:id="@+id/statusicon"
+        android:layout_gravity="center"
+        android:layout_marginBottom="60dp"
+        android:contentDescription="" />
+
+    <TextView
+        android:text="0.00%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BACpercent"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/BACTextSize"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:text="@string/bactext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/approxbac"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:textSize="25sp"
+        />
+
+    <TextView
+        android:text="Quote Text Queote Text Quote Text Quote Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quoteText"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:textStyle="normal"/>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="94dp"
+        android:layout_gravity="bottom"
+        android:theme="@style/AppTheme">
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fab_size"
+            android:clickable="true"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/beer_nobackground"
+            android:id="@+id/addDrinkButton"
+            android:layout_gravity="end"
+            app:backgroundTint="@color/gray"
+            android:layout_alignTop="@+id/drinksButton"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="onAddDrinkPressed"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/fab_size"
+            android:clickable="true"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_glass"
+            android:id="@+id/drinksButton"
+            app:backgroundTint="@color/gray"
+            android:layout_marginStart="8dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="10dp"/>
+    </RelativeLayout>
+
+
+</FrameLayout>

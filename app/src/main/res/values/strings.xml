@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Drunkster</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="button">button</string>
+    <string name="AddDrink">Add Drink</string>
+    <string name="Registry">Registry</string>
+    <string name="History">History</string>
+    <string name="Settings">Settings</string>
+    <string name="Help">Help</string>
+    <string name="Aboutus">About Us</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Closed</string>
+    <string name="bactext">Approx. BAC</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="feelingTitle">feelingTitle</string>
+
+</resources>

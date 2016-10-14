@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <color name="turqoise">#34C2B6</color>
+    <color name="bright_green">#B6F11D</color>
+    <color name="blue">#05839C</color>
+    <color name="gray">#413D3D</color>
+    <color name="red">#cc5555</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="colorPrimary">@color/gray</color>
+
+    <color name="circleProgressCompleteStartGradient">@color/bright_green</color>
+    <color name="circleProgressCompleteEndGradient">@color/red</color>
+    <color name="circleProgressIncompleteStartGradient">@color/light_gray</color>
+    <color name="circleProgressIncompleteEndGradient">@color/light_gray</color>
+
+</resources>

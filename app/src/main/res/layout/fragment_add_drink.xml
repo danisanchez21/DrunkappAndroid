@@ -1,0 +1,260 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cognitioco.drunkster.com.cognitioco.drunkster.view.AddDrinkFragment"
+    android:background="@android:color/transparent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="555dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+
+
+        >
+
+        <TextView
+            android:text="Drink Size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DrinkSize"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_rightnav"
+            android:layout_marginTop="34dp"
+            android:id="@+id/rightnav"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/DrinkSize"
+            android:layout_alignParentEnd="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_leftnav"
+            android:id="@+id/leftNav"
+            android:background="@android:color/transparent"
+            android:layout_alignTop="@+id/rightnav"
+            android:layout_alignParentStart="true" />
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:background="@android:color/transparent"
+            android:id="@+id/horizontalScrollView"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:scrollbars="none"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/DrinkSize"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@android:color/transparent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:background="@android:color/transparent">
+
+
+                <ImageView
+                    android:layout_width="@dimen/scrollviewIconSize"
+                    android:layout_height="@dimen/scrollviewIconSize"
+                    app:srcCompat="@mipmap/ic_vodka"
+                    android:id="@+id/vodka"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                  />
+
+                <ImageView
+                    android:layout_width="@dimen/scrollviewIconSize"
+                    android:layout_height="@dimen/scrollviewIconSize"
+                    app:srcCompat="@mipmap/ic_beerpint"
+                    android:id="@+id/beerpint"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                   />
+
+                <ImageView
+                    android:layout_width="@dimen/scrollviewIconSize"
+                    android:layout_height="@dimen/scrollviewIconSize"
+                    app:srcCompat="@mipmap/ic_wine"
+                    android:id="@+id/wine"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                   />
+
+                <ImageView
+                    android:layout_width="@dimen/scrollviewIconSize"
+                    android:layout_height="@dimen/scrollviewIconSize"
+                    app:srcCompat="@mipmap/ic_cocktail"
+                    android:id="@+id/cocktail"
+                    android:textAlignment="center"
+                    />
+
+                <ImageView
+                    android:layout_width="@dimen/scrollviewIconSize"
+                    android:layout_height="@dimen/scrollviewIconSize"
+                    app:srcCompat="@mipmap/ic_beerglass"
+                    android:id="@+id/beerglass"
+                    android:textAlignment="center"
+                    />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="447dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:text="How Many?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="32dp"
+                android:id="@+id/NumOfDrinks"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/NumOfDrinks"
+                android:layout_toEndOf="@+id/NumOfDrinks"
+                android:layout_marginStart="19dp"
+                android:max="8"
+                android:id="@+id/howmanyseekbar"
+                />
+
+            <TextView
+                android:text="When Did That Happen?"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/NumOfDrinks"
+                android:layout_marginTop="58dp"
+                android:id="@+id/whenhappened"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_alignStart="@+id/NumOfDrinks"
+                android:layout_toStartOf="@+id/howmanyseekbar" />
+
+            <Button
+                android:text="Just Now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/whenhappened"
+                android:layout_alignStart="@+id/howmanyseekbar"
+                android:layout_marginTop="6dp"
+                android:id="@+id/justNowButton" />
+
+            <Button
+                android:text="Select Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/justNowButton"
+                android:layout_toEndOf="@+id/justNowButton"
+                android:layout_marginStart="35dp"
+                android:id="@+id/selectTimeButton" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_leftnav"
+                android:layout_below="@+id/whenhappened"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="78dp"
+                android:id="@+id/leftnavfeeling"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@mipmap/ic_rightnav"
+                android:layout_alignTop="@+id/leftnavfeeling"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/rightnavfeeling"
+                android:background="@android:color/transparent"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="51dp"
+                android:layout_below="@+id/whenhappened"
+                android:layout_alignStart="@+id/whenhappened"
+                android:layout_marginStart="18dp"
+                android:layout_alignEnd="@+id/selectTimeButton"
+                android:background="@android:color/transparent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="@dimen/scrollviewIconSize"
+                        android:layout_height="@dimen/scrollviewIconSize"
+                        app:srcCompat="@mipmap/ic_mindful"
+                        android:id="@+id/mindfulicon"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="@dimen/scrollviewIconSize"
+                        android:layout_height="@dimen/scrollviewIconSize"
+                        app:srcCompat="@mipmap/ic_worried"
+                        android:id="@+id/worriedicon"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="@dimen/scrollviewIconSize"
+                        android:layout_height="@dimen/scrollviewIconSize"
+                        app:srcCompat="@mipmap/ic_hungry"
+                        android:id="@+id/hungryicon" />
+
+                    <ImageView
+                        android:layout_width="@dimen/scrollviewIconSize"
+                        android:layout_height="@dimen/scrollviewIconSize"
+                        app:srcCompat="@mipmap/ic_sleeping"
+                        android:id="@+id/sleepingicon" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:text="@string/feelingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:id="@+id/feelingLabel"
+                android:layout_below="@+id/whenhappened"
+                android:layout_toStartOf="@+id/selectTimeButton" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                app:fabSize="normal"
+                app:srcCompat="@android:drawable/ic_menu_add"
+                android:id="@+id/floatingActionButton"
+                android:layout_marginEnd="16dp"
+                app:backgroundTint="@color/gray"
+                android:layout_marginBottom="25dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
