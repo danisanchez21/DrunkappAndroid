@@ -5,11 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cognitioco.drunkster.R;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.FeelingsController;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.RegistryController;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Drink;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Registry;
@@ -32,6 +35,7 @@ public class AddDrinkFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     RegistryController controller;
+    FeelingsController feelingsController;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +65,7 @@ public class AddDrinkFragment extends Fragment {
     public AddDrinkFragment() {
         // Required empty public constructor
         controller = new RegistryController();
+        feelingsController = new FeelingsController();
     }
 
     /**
@@ -96,6 +101,15 @@ public class AddDrinkFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_add_drink, container, false);
+
+        //RecyclerView
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.feelingsRecyclerView);
+        FeelingRecyclerViewAdapter adapter = new FeelingRecyclerViewAdapter(feelingsController.retrieveAllFeelings(), getContext());
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager lny = new LinearLayoutManager(getContext());
+        lny.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(lny);
+
         FloatingActionButton addFab = (FloatingActionButton) v.findViewById(R.id.acceptValues);
         addFab.setOnClickListener(onClickListener);
 

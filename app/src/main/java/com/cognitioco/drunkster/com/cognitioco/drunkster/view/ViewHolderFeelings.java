@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.cognitioco.drunkster.R;
+
 /**
  * Created by dasan on 10/15/2016.
  */
@@ -16,6 +18,9 @@ public class ViewHolderFeelings extends ViewHolder {
 
     public ViewHolderFeelings(View itemView) {
         super(itemView);
+
+        subtitile = (TextView) itemView.findViewById(R.id.imageListViewSubtitle);
+        imageButton = (ImageButton) itemView.findViewById(R.id.imageListViewButton);
 
     }
 }

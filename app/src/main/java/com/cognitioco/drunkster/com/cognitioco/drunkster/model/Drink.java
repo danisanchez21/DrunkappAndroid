@@ -12,12 +12,10 @@ public class Drink extends SugarRecord
     private double Volume;
     private double DrinkProof;
     private int asset;
-    private int feelingId;
-    private String feeling;
 
     public Drink(){}
 
-    public Drink( String name, double volume, double drinkProof) {
+    public Drink(String name, double volume, double drinkProof, int asset) {
         this.name = name;
         Volume = volume;
         DrinkProof = drinkProof;
@@ -29,14 +27,6 @@ public class Drink extends SugarRecord
 
     public Drink(String name) {
         this.name = name;
-    }
-
-    public String getFeeling() {
-        return feeling;
-    }
-
-    public void setFeeling(String feeling) {
-        this.feeling = feeling;
     }
 
     public int getAsset() {
@@ -71,13 +61,6 @@ public class Drink extends SugarRecord
         DrinkProof = drinkProof;
     }
 
-    public int getFeelingId() {
-        return feelingId;
-    }
-
-    public void setFeelingId(int feelingId) {
-        this.feelingId = feelingId;
-    }
 
     @Override
     public String toString() {
