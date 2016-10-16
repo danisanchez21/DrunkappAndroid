@@ -2,9 +2,6 @@ package com.cognitioco.drunkster.com.cognitioco.drunkster.model;
 
 import java.util.List;
 
-/**
- * Created by dasan on 10/12/2016.
- */
 
 public class HistoryDAO implements HistoryDAOInterface {
     @Override
@@ -24,16 +21,16 @@ public class HistoryDAO implements HistoryDAOInterface {
 
     @Override
     public void deleteAllHistory() {
-
+        History.deleteAll(History.class);
     }
 
     @Override
     public List<History> retrieveAllHistory() {
-        return null;
+        return History.listAll(History.class);
     }
 
     @Override
     public History retrieveById(History hist) {
-        return null;
+        return History.findById(History.class, hist.getId());
     }
 }

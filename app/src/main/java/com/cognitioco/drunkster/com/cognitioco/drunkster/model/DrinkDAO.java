@@ -1,5 +1,7 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.model;
 
+import com.orm.SugarRecord;
+
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public class DrinkDAO implements DrinkDAOSkeleton{
 
     @Override
     public void UpdateDrink(Drink drink) {
-
+        drink.save();
     }
 
     @Override
@@ -25,18 +27,18 @@ public class DrinkDAO implements DrinkDAOSkeleton{
 
     @Override
     public Drink retrieveDrinkById(Drink drink) {
-        return drink.findById(Drink.class,drink.getId());
+        return SugarRecord.findById(Drink.class, drink.getId());
     }
 
 
     @Override
-    public List<Drink> retrieveDrinkByName(Drink drink) {
+    public Drink retrieveDrinkByName(Drink drink) {
 
-        return  drink.find(Drink.class,"where name=?",drink.getName());
+        return SugarRecord.find(Drink.class, "where name=?", drink.getName()).get(0);
     }
 
     @Override
-    public List<Drink> retireveAllDrinks(Drink drink) {
-        return drink.find(Drink.class,"","");
+    public List<Drink> retireveAllDrinks() {
+        return Drink.listAll(Drink.class);
     }
 }

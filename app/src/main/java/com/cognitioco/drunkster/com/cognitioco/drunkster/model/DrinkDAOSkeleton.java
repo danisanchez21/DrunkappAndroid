@@ -13,7 +13,9 @@ public interface DrinkDAOSkeleton {
     void UpdateDrink(Drink drink);
     void deleteDrink(Drink drink);
     Drink retrieveDrinkById(Drink drink);
-    List<Drink> retrieveDrinkByName(Drink drink);
-    List<Drink> retireveAllDrinks(Drink drink);
+
+    Drink retrieveDrinkByName(Drink drink);
+
+    List<Drink> retireveAllDrinks();
 
 }

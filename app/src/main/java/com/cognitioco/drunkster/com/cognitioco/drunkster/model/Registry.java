@@ -3,9 +3,6 @@ package com.cognitioco.drunkster.com.cognitioco.drunkster.model;
 import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,6 +15,8 @@ public class Registry extends SugarRecord {
     private Drink drink;
     private double currentBAC;
     private String timeTakenDB;
+
+
     @Ignore
     private Date timeTaken;
     private int numOfDrinks;
@@ -28,6 +27,9 @@ public class Registry extends SugarRecord {
         setId(id);
         this.drink = drink;
         this.currentBAC = currentBAC;
+
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+        this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
         this.numOfDrinks = numOfDrinks;
     }
@@ -35,6 +37,8 @@ public class Registry extends SugarRecord {
     public Registry(Drink drink, double currentBAC, Date timeTaken, int numOfDrinks) {
         this.drink = drink;
         this.currentBAC = currentBAC;
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+        this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
         this.numOfDrinks = numOfDrinks;
     }
@@ -59,15 +63,32 @@ public class Registry extends SugarRecord {
         this.currentBAC = currentBAC;
     }
 
+    public String getTimeTakenDB() {
+
+
+        return timeTakenDB;
+    }
+
+    public void setTimeTakenDB(String timeTaken) {
+
+        timeTakenDB = timeTaken;
+    }
+
     public Date getTimeTaken() {
-        return timeTaken;
+
+        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+        try {
+            return format.parse(timeTakenDB);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
     public void setTimeTaken(Date timeTaken) {
 
         SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
-
-
+        this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
     }
 

@@ -1,5 +1,7 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.model;
 
+import com.orm.SugarRecord;
+
 import java.util.List;
 
 /**
@@ -15,27 +17,27 @@ public class RegistryDAO implements RegistryDAOInterface
 
     @Override
     public void updateRegistry(Registry reg) {
-
+        reg.save();
 
 }
     @Override
     public void deleteRegistry(Registry reg) {
-
-    }
-
-    @Override
-    public void deleteAllRegistries() {
-        Registry reg = new Registry();
         reg.delete();
     }
 
     @Override
+    public void deleteAllRegistries() {
+        Registry.deleteAll(Registry.class);
+    }
+
+    @Override
     public Registry retrieveRegistryById(Registry reg) {
-        return reg.findById(Registry.class,reg.getId());
+        return SugarRecord.findById(Registry.class, reg.getId());
     }
 
     @Override
     public List<Registry> retrieveAllRegistries() {
         return Registry.listAll(Registry.class);
     }
+
 }

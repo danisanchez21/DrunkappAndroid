@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cognitioco.drunkster.R;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.RegistryController;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Drink;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Registry;
 
@@ -30,14 +31,36 @@ public class AddDrinkFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    RegistryController controller;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnAddDrinkFragment mListener;
+    private View.OnClickListener onButtonClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            Registry reg = new Registry();
+        }
+    };
+    private View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onButtonPressed(null);
+            Registry reg = new Registry();
+            reg.setCurrentBAC(0.04);
+            reg.setDrink(new Drink(0));
+            reg.setNumOfDrinks(4);
+            reg.setTimeTaken(new Date());
+
+        }
+    };
 
     public AddDrinkFragment() {
         // Required empty public constructor
+        controller = new RegistryController();
     }
 
     /**
@@ -85,19 +108,6 @@ public class AddDrinkFragment extends Fragment {
             mListener.OnAddDrinkInteraction(uri);
         }
     }
-
-    private View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            onButtonPressed(null);
-            Registry reg = new Registry();
-            reg.setCurrentBAC(0.04);
-            reg.setDrink(new Drink(0));
-            reg.setNumOfDrinks(4);
-            reg.setTimeTaken(new Date());
-
-        }
-    };
 
     @Override
     public void onAttach(Context context) {
