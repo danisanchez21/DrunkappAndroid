@@ -1,4 +1,4 @@
-package layout;
+package com.cognitioco.drunkster.com.cognitioco.drunkster.view;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,10 +15,6 @@ import android.widget.Toast;
 
 import com.cognitioco.drunkster.R;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.User;
-
-import java.nio.channels.SeekableByteChannel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -191,5 +187,7 @@ public class UserSettings extends Fragment {
         // TODO Auto-generated method stub
         TextView weightDisplay = (TextView)getView().findViewById(R.id.lbl_weight);
         weightDisplay.setText(String.valueOf(progress));
+        TextView ageDisplay = (TextView)getView().findViewById(R.id.lbl_ageDisplay);
+        ageDisplay.setText(String.valueOf(progress));
     }
 }

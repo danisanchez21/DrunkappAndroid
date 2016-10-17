@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="layout.UserSettings"
+    tools:context=".com.cognitioco.drunkster.view.UserSettings"
     android:background="@android:color/transparent">
 
     <!-- TODO: Update blank fragment layout -->
@@ -46,6 +46,55 @@
             android:layout_below="@+id/lbl_weight"
             android:layout_toStartOf="@+id/tf_username" />
 
+        <TextView
+            android:text="Emergency Contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:id="@+id/lbl_contact"
+            android:textSize="14sp"
+            android:layout_below="@+id/spin_taxiservice"
+            android:layout_alignStart="@+id/lbl_taxi"
+            android:layout_toStartOf="@+id/spin_taxiservice"
+            android:layout_alignEnd="@+id/lbl_taxi" />
+
+        <TextView
+            android:text="Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_username"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"
+            android:layout_alignBaseline="@+id/tf_username"
+            android:layout_alignBottom="@+id/tf_username"
+            android:layout_alignStart="@+id/lbl_weight" />
+
+        <TextView
+            android:text="Taxi Service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_taxi"
+            android:textSize="14sp"
+            android:layout_alignTop="@+id/spin_taxiservice"
+            android:layout_alignStart="@+id/lbl_weight" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_weightDisplay"
+            android:layout_below="@+id/bar_weight"
+            android:layout_alignEnd="@+id/lbl_sex"
+            android:layout_marginTop="12dp" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/lbl_weight"
+            android:layout_toEndOf="@+id/lbl_weight"
+            android:id="@+id/bar_weight"
+            android:max="500"
+            android:progress="180" />
+
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,15 +107,6 @@
             android:layout_marginTop="21dp"
             android:id="@+id/tf_username"
             android:textSize="18sp" />
-
-        <SeekBar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/lbl_weight"
-            android:layout_toEndOf="@+id/lbl_weight"
-            android:id="@+id/bar_weight"
-            android:max="500"
-            android:progress="180" />
 
         <RadioGroup
             android:layout_height="wrap_content"
@@ -91,18 +131,6 @@
                 android:layout_weight="1" />
         </RadioGroup>
 
-        <TextView
-            android:text="Emergency Contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:id="@+id/lbl_contact"
-            android:textSize="14sp"
-            android:layout_below="@+id/spin_taxiservice"
-            android:layout_alignStart="@+id/lbl_taxi"
-            android:layout_toStartOf="@+id/spin_taxiservice"
-            android:layout_alignEnd="@+id/lbl_taxi" />
-
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,26 +142,6 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="27dp"
             android:id="@+id/btn_save" />
-
-        <TextView
-            android:text="Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_username"
-            android:layout_marginStart="24dp"
-            android:textSize="18sp"
-            android:layout_alignBaseline="@+id/tf_username"
-            android:layout_alignBottom="@+id/tf_username"
-            android:layout_alignStart="@+id/lbl_weight" />
-
-        <TextView
-            android:text="Taxi Service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lbl_taxi"
-            android:textSize="14sp"
-            android:layout_alignTop="@+id/spin_taxiservice"
-            android:layout_alignStart="@+id/lbl_weight" />
 
         <Spinner
             android:layout_width="match_parent"
@@ -156,10 +164,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lbl_weightDisplay"
-            android:layout_below="@+id/bar_weight"
-            android:layout_alignEnd="@+id/lbl_sex"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:id="@+id/lbl_ageDisplay"
+            android:layout_below="@+id/lbl_age"
+            android:layout_alignEnd="@+id/lbl_taxi"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 </FrameLayout>
