@@ -1,0 +1,165 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="layout.UserSettings"
+    android:background="@android:color/transparent">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:text="Age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/lbl_sex"
+            android:id="@+id/lbl_age"
+            android:textSize="18sp" />
+
+        <TextView
+            android:text="Your Weight (Pounds)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="49dp"
+            android:id="@+id/lbl_weight"
+            android:textSize="14sp"
+            android:layout_below="@+id/tf_username"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:singleLine="false" />
+
+        <TextView
+            android:text="Sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:id="@+id/lbl_sex"
+            android:textSize="18sp"
+            android:layout_below="@+id/lbl_weight"
+            android:layout_toStartOf="@+id/tf_username" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:hint="Enter Name"
+            android:ems="10"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/lbl_username"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="21dp"
+            android:id="@+id/tf_username"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/lbl_weight"
+            android:layout_toEndOf="@+id/lbl_weight"
+            android:id="@+id/bar_weight"
+            android:max="500"
+            android:progress="180" />
+
+        <RadioGroup
+            android:layout_height="wrap_content"
+            android:id="@+id/group_radioSex"
+            android:layout_width="wrap_content"
+            android:layout_alignTop="@+id/lbl_sex"
+            android:layout_alignStart="@+id/bar_weight">
+
+            <RadioButton
+                android:text="Male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_male"
+                android:layout_weight="1"
+                android:checked="true" />
+
+            <RadioButton
+                android:text="Female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_female"
+                android:layout_weight="1" />
+        </RadioGroup>
+
+        <TextView
+            android:text="Emergency Contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:id="@+id/lbl_contact"
+            android:textSize="14sp"
+            android:layout_below="@+id/spin_taxiservice"
+            android:layout_alignStart="@+id/lbl_taxi"
+            android:layout_toStartOf="@+id/spin_taxiservice"
+            android:layout_alignEnd="@+id/lbl_taxi" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_save"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="27dp"
+            android:id="@+id/btn_save" />
+
+        <TextView
+            android:text="Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_username"
+            android:layout_marginStart="24dp"
+            android:textSize="18sp"
+            android:layout_alignBaseline="@+id/tf_username"
+            android:layout_alignBottom="@+id/tf_username"
+            android:layout_alignStart="@+id/lbl_weight" />
+
+        <TextView
+            android:text="Taxi Service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_taxi"
+            android:textSize="14sp"
+            android:layout_alignTop="@+id/spin_taxiservice"
+            android:layout_alignStart="@+id/lbl_weight" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spin_taxiservice"
+            android:layout_marginTop="67dp"
+            android:layout_below="@+id/lbl_age"
+            android:layout_alignStart="@+id/tf_username"
+            android:layout_marginStart="23dp" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/lbl_age"
+            android:layout_alignStart="@+id/group_radioSex"
+            android:id="@+id/bar_age"
+            android:max="100"
+            android:progress="21" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lbl_weightDisplay"
+            android:layout_below="@+id/bar_weight"
+            android:layout_alignEnd="@+id/lbl_sex"
+            android:layout_marginTop="12dp" />
+
+    </RelativeLayout>
+</FrameLayout>

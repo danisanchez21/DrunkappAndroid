@@ -13,7 +13,7 @@ public class User extends SugarRecord
     }
 
     private String name;
-    private Date birthDate;
+    private int age;
     private double weight;
     private Sex sex;
     private String prefferedTaxiService;
@@ -21,19 +21,19 @@ public class User extends SugarRecord
 
     public User(){};
 
-    public User(long id, String name, Date birthDate, double weight, Sex sex, String prefferedTaxiService, String emergencyNumber) {
+    public User(long id, String name, int age, double weight, Sex sex, String prefferedTaxiService, String emergencyNumber) {
         setId(id);
         this.name = name;
-        this.birthDate = birthDate;
+        this.age = age;
         this.weight = weight;
         this.sex = sex;
         this.prefferedTaxiService = prefferedTaxiService;
         this.emergencyNumber = emergencyNumber;
     }
 
-    public User(String name, Date birthDate, double weight, Sex sex) {
+    public User(String name, int age, double weight, Sex sex) {
         this.name = name;
-        this.birthDate = birthDate;
+        this.age = age;
         this.weight = weight;
         this.sex = sex;
     }
@@ -58,12 +58,12 @@ public class User extends SugarRecord
         this.name = name;
     }
 
-    public Date getBirthDate() {
-        return birthDate;
+    public int getAge() {
+        return age;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public double getWeight() {
@@ -113,7 +113,7 @@ public class User extends SugarRecord
 
         if (Double.compare(user.weight, weight) != 0) return false;
         if (!name.equals(user.name)) return false;
-        if (!birthDate.equals(user.birthDate)) return false;
+        if (age != user.age) return false;
         if (sex != user.sex) return false;
         if (prefferedTaxiService != null ? !prefferedTaxiService.equals(user.prefferedTaxiService) : user.prefferedTaxiService != null)
             return false;
@@ -126,7 +126,7 @@ public class User extends SugarRecord
         int result;
         long temp;
         result = name.hashCode();
-        result = 31 * result + birthDate.hashCode();
+        result = 31 * result + age;
         temp = Double.doubleToLongBits(weight);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + sex.hashCode();
@@ -140,7 +140,7 @@ public class User extends SugarRecord
         return "User{" +
                 "id=" + getId() +
                 ", name='" + name + '\'' +
-                ", birthDate=" + birthDate +
+                ", age=" + age +
                 ", weight=" + weight +
                 ", sex=" + sex +
                 ", prefferedTaxiService='" + prefferedTaxiService + '\'' +
