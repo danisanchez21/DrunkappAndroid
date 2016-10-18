@@ -8,18 +8,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cognitioco.drunkster.R;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.UserController;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link UserSettings.OnFragmentInteractionListener} interface
+ * {@link UserSettings.OnUserFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link UserSettings#newInstance} factory method to
  * create an instance of this fragment.
@@ -34,7 +36,62 @@ public class UserSettings extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnUserFragmentInteractionListener mListener;
+    private SeekBar.OnSeekBarChangeListener seekbarWeightListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            TextView weightDisplay = (TextView) getView().findViewById(R.id.lbl_weightDisplay);
+            weightDisplay.setText(String.valueOf(progress + 1));
+
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+
+    private SeekBar.OnSeekBarChangeListener seekbarAgeListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            TextView ageDisplay = (TextView) getView().findViewById(R.id.lbl_ageDisplay);
+            ageDisplay.setText(String.valueOf(progress + 1));
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    };
+    private View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (saveUserSettings()) {
+                getFragmentManager().popBackStack();
+            } else {
+                //Toast
+                //Context context = getApplicationContext();
+                //CharSequence text = "Hello toast!";
+                //int duration = Toast.LENGTH_SHORT;
+
+                //Toast toast = Toast.makeText(context, text, duration);
+                //toast.show();
+
+                Toast.makeText(getContext(), "Please enter a name.", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    };
 
     public UserSettings() {
         // Required empty public constructor
@@ -74,21 +131,52 @@ public class UserSettings extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user_settings, container, false);
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.btn_save);
         fab.setOnClickListener(listener);
+
+        UserController userc = new UserController();
+
+        User user = userc.retirveAll().get(0);
+
+        TextView weightDisplay = (TextView) v.findViewById(R.id.lbl_weightDisplay);
+        TextView ageDispla = (TextView) v.findViewById(R.id.lbl_ageDisplay);
+
+        weightDisplay.setText(String.valueOf((int) user.getWeight()));
+        ageDispla.setText(String.valueOf(user.getAge()));
+
+        EditText tf = (EditText) v.findViewById(R.id.tf_username);
+        SeekBar weight = (SeekBar) v.findViewById(R.id.bar_weight);
+        SeekBar age = (SeekBar) v.findViewById(R.id.bar_age);
+
+
+        RadioButton maleButton = (RadioButton) v.findViewById(R.id.radio_male);
+        RadioButton femaleButton = (RadioButton) v.findViewById(R.id.radio_female);
+
+        if (user.getSexDB() == 1) {
+            femaleButton.setSelected(true);
+        } else {
+            maleButton.setSelected(true);
+        }
+
+        tf.setText(user.getName());
+        weight.setProgress((int) user.getWeight());
+        age.setProgress(user.getAge());
+        weight.setOnSeekBarChangeListener(seekbarWeightListener);
+        age.setOnSeekBarChangeListener(seekbarAgeListener);
+
         return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onUserFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnUserFragmentInteractionListener) {
+            mListener = (OnUserFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -101,49 +189,11 @@ public class UserSettings extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    private View.OnClickListener listener = new View.OnClickListener()
-    {
-        @Override
-        public void onClick(View v)
-        {
-            if (saveUserSettings())
-            {
-                getFragmentManager().popBackStack();
-            }
-            else
-            {
-                //Toast
-                //Context context = getApplicationContext();
-                //CharSequence text = "Hello toast!";
-                //int duration = Toast.LENGTH_SHORT;
-
-                //Toast toast = Toast.makeText(context, text, duration);
-                //toast.show();
-
-                Toast.makeText(getActivity(),"Please enter a name.",Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    };
-
     private boolean saveUserSettings()
     {
-        User newSettings = new User();
+
+        UserController usercontroller = new UserController();
+        User newSettings = usercontroller.retirveAll().get(0);
 
         TextView newName = (TextView) getView().findViewById(R.id.tf_username);
         SeekBar newAge = (SeekBar) getView().findViewById((R.id.bar_age));
@@ -153,7 +203,8 @@ public class UserSettings extends Fragment {
 
         //Ask user to fill name
         String checkName = newName.getText().toString();
-        if (checkName != "")
+        String empty = "";
+        if (!checkName.isEmpty())
         {
             newSettings.setName(newName.getText().toString());
         }
@@ -176,7 +227,7 @@ public class UserSettings extends Fragment {
             newSettings.setSex(User.Sex.FEMALE);
         }
 
-        //UserController.updateUser(newSettings);
+        usercontroller.updateUser(newSettings);
 
         return true;
     }
@@ -189,5 +240,20 @@ public class UserSettings extends Fragment {
         weightDisplay.setText(String.valueOf(progress));
         TextView ageDisplay = (TextView)getView().findViewById(R.id.lbl_ageDisplay);
         ageDisplay.setText(String.valueOf(progress));
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnUserFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onUserFragmentInteraction(Uri uri);
     }
 }

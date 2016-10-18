@@ -3,171 +3,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".com.cognitioco.drunkster.view.UserSettings"
-    android:background="@android:color/transparent">
+    android:background="@android:color/transparent"
+    tools:context=".com.cognitioco.drunkster.view.UserSettings">
 
     <!-- TODO: Update blank fragment layout -->
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:background="@android:color/transparent">
 
         <TextView
-            android:text="Age"
+            android:id="@+id/lbl_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignStart="@+id/lbl_sex"
-            android:id="@+id/lbl_age"
+            android:layout_centerVertical="true"
+            android:text="Age"
             android:textSize="18sp" />
 
         <TextView
-            android:text="Your Weight (Pounds)"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="49dp"
             android:id="@+id/lbl_weight"
-            android:textSize="14sp"
-            android:layout_below="@+id/tf_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_below="@+id/tf_username"
             android:layout_marginStart="14dp"
-            android:singleLine="false" />
+            android:layout_marginTop="49dp"
+            android:singleLine="false"
+            android:text="Your Weight (Pounds)"
+            android:textSize="14sp" />
 
         <TextView
-            android:text="Sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
             android:id="@+id/lbl_sex"
-            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/lbl_weight"
-            android:layout_toStartOf="@+id/tf_username" />
+            android:layout_marginTop="44dp"
+            android:layout_toStartOf="@+id/tf_username"
+            android:text="Sex"
+            android:textSize="18sp" />
 
         <TextView
-            android:text="Emergency Contact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:id="@+id/lbl_contact"
-            android:textSize="14sp"
-            android:layout_below="@+id/spin_taxiservice"
-            android:layout_alignStart="@+id/lbl_taxi"
-            android:layout_toStartOf="@+id/spin_taxiservice"
-            android:layout_alignEnd="@+id/lbl_taxi" />
-
-        <TextView
-            android:text="Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/lbl_taxi"
+            android:layout_alignStart="@+id/lbl_taxi"
+            android:layout_below="@+id/spin_taxiservice"
+            android:layout_marginTop="50dp"
+            android:layout_toStartOf="@+id/spin_taxiservice"
+            android:text="Emergency Contact"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/lbl_username"
-            android:layout_marginStart="24dp"
-            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tf_username"
             android:layout_alignBottom="@+id/tf_username"
-            android:layout_alignStart="@+id/lbl_weight" />
+            android:layout_alignStart="@+id/lbl_weight"
+            android:layout_marginStart="24dp"
+            android:text="Name"
+            android:textSize="18sp" />
 
         <TextView
-            android:text="Taxi Service"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/lbl_taxi"
-            android:textSize="14sp"
-            android:layout_alignTop="@+id/spin_taxiservice"
-            android:layout_alignStart="@+id/lbl_weight" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/lbl_weightDisplay"
-            android:layout_below="@+id/bar_weight"
-            android:layout_alignEnd="@+id/lbl_sex"
-            android:layout_marginTop="12dp" />
+            android:layout_alignStart="@+id/lbl_weight"
+            android:layout_alignTop="@+id/spin_taxiservice"
+            android:text="Taxi Service"
+            android:textSize="14sp" />
 
         <SeekBar
+            android:id="@+id/bar_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/lbl_weight"
             android:layout_toEndOf="@+id/lbl_weight"
-            android:id="@+id/bar_weight"
             android:max="500"
             android:progress="180" />
 
         <EditText
+            android:id="@+id/tf_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="Enter Name"
-            android:ems="10"
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/lbl_username"
             android:layout_marginStart="18dp"
             android:layout_marginTop="21dp"
-            android:id="@+id/tf_username"
+            android:layout_toEndOf="@+id/lbl_username"
+            android:ems="10"
+            android:hint="Enter Name"
+            android:inputType="textPersonName"
             android:textSize="18sp" />
 
         <RadioGroup
-            android:layout_height="wrap_content"
             android:id="@+id/group_radioSex"
             android:layout_width="wrap_content"
-            android:layout_alignTop="@+id/lbl_sex"
-            android:layout_alignStart="@+id/bar_weight">
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_weight"
+            android:layout_alignTop="@+id/lbl_sex">
 
             <RadioButton
-                android:text="Male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/radio_male"
-                android:layout_weight="1"
-                android:checked="true" />
-
-            <RadioButton
-                android:text="Female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Male" />
+
+            <RadioButton
                 android:id="@+id/radio_female"
-                android:layout_weight="1" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Female" />
         </RadioGroup>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            app:fabSize="normal"
-            app:srcCompat="@mipmap/ic_save"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="32dp"
             android:layout_marginBottom="27dp"
-            android:id="@+id/btn_save" />
+            android:layout_marginEnd="32dp"
+            android:clickable="true"
+            app:fabSize="normal"
+            app:srcCompat="@mipmap/ic_save" />
 
         <Spinner
+            android:id="@+id/spin_taxiservice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spin_taxiservice"
-            android:layout_marginTop="67dp"
-            android:layout_below="@+id/lbl_age"
             android:layout_alignStart="@+id/tf_username"
-            android:layout_marginStart="23dp" />
+            android:layout_below="@+id/lbl_age"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="67dp" />
 
         <SeekBar
+            android:id="@+id/bar_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/lbl_age"
             android:layout_alignStart="@+id/group_radioSex"
-            android:id="@+id/bar_age"
+            android:layout_alignTop="@+id/lbl_age"
             android:max="100"
             android:progress="21" />
 
         <TextView
+            android:id="@+id/lbl_weightDisplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_alignEnd="@+id/tf_username"
+            android:layout_below="@+id/bar_weight"
+            android:layout_marginEnd="19dp"
+            android:gravity="center_horizontal"
+            android:text=""
+            android:textSize="18sp" />
+
+        <TextView
             android:id="@+id/lbl_ageDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/tf_username"
             android:layout_below="@+id/lbl_age"
-            android:layout_alignEnd="@+id/lbl_taxi"
+            android:text="T"
             android:textSize="18sp" />
 
     </RelativeLayout>

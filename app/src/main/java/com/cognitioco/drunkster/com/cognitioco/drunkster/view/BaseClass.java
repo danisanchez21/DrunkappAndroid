@@ -19,7 +19,8 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkste
 
 
 public class BaseClass extends AppCompatActivity implements
-        ProgressBarFragment.OnMainFragmentInteractionListener, AddDrinkFragment.OnAddDrinkFragment, RegisterFragment.OnRegisterFragmentInteractionListener {
+        ProgressBarFragment.OnMainFragmentInteractionListener, AddDrinkFragment.OnAddDrinkFragment, RegisterFragment.OnRegisterFragmentInteractionListener,
+        UserSettings.OnUserFragmentInteractionListener {
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -27,6 +28,7 @@ public class BaseClass extends AppCompatActivity implements
     RegisterFragment registerFragment;
     SharedPreferences prefs;
     ProgressBarFragment progressFragment;
+    UserSettings userFragment;
 
     RegistryController regController;
 
@@ -149,6 +151,17 @@ public class BaseClass extends AppCompatActivity implements
                     } else {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, registerFragment, "registerFragment").addToBackStack(null).commit();
                     }
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else if (id == R.id.settingsButton) {
+
+                    if (userFragment == null) {
+                        userFragment = new UserSettings();
+
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, userFragment, "UserFragment").addToBackStack("UserFragment").commit();
+                    } else {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, userFragment, "UserFragment").addToBackStack("UserFragment").commit();
+                    }
+                    drawerLayout.closeDrawer(GravityCompat.START);
                 }
                 return false;
             }
@@ -182,4 +195,8 @@ public class BaseClass extends AppCompatActivity implements
     }
 
 
+    @Override
+    public void onUserFragmentInteraction(Uri uri) {
+        //do Nothing for now
+    }
 }
