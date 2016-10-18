@@ -9,102 +9,35 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="555dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="?android:attr/actionBarSize"
         android:background="@android:color/transparent"
         >
+
 
         <TextView
             android:id="@+id/DrinkSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:paddingBottom="30dp"
             android:text="Drink Size" />
 
-        <ImageButton
-            android:id="@+id/rightnav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/DrinkSize"
-            android:layout_marginTop="34dp"
-            android:background="@android:color/transparent"
-            app:srcCompat="@mipmap/ic_rightnav" />
-
-        <ImageButton
-            android:id="@+id/leftNav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignTop="@+id/rightnav"
-            android:background="@android:color/transparent"
-            app:srcCompat="@mipmap/ic_leftnav" />
-
-        <HorizontalScrollView
-            android:id="@+id/horizontalScrollView"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_below="@+id/DrinkSize"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/transparent"
-            android:backgroundTint="@android:color/transparent"
-            android:scrollbars="none">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
                 android:background="@android:color/transparent"
-                android:orientation="horizontal">
+            android:orientation="horizontal">
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/drinkRecyclerViewRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/vodka"
-                    android:layout_width="@dimen/scrollviewIconSize"
-                    android:layout_height="@dimen/scrollviewIconSize"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    app:srcCompat="@mipmap/ic_vodka"
-                  />
-
-                <ImageView
-                    android:id="@+id/beerpint"
-                    android:layout_width="@dimen/scrollviewIconSize"
-                    android:layout_height="@dimen/scrollviewIconSize"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    app:srcCompat="@mipmap/ic_beerpint"
-                   />
-
-                <ImageView
-                    android:id="@+id/wine"
-                    android:layout_width="@dimen/scrollviewIconSize"
-                    android:layout_height="@dimen/scrollviewIconSize"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    app:srcCompat="@mipmap/ic_wine"
-                   />
-
-                <ImageView
-                    android:id="@+id/cocktail"
-                    android:layout_width="@dimen/scrollviewIconSize"
-                    android:layout_height="@dimen/scrollviewIconSize"
-                    android:textAlignment="center"
-                    app:srcCompat="@mipmap/ic_cocktail"
-                    />
-
-                <ImageView
-                    android:id="@+id/beerglass"
-                    android:layout_width="@dimen/scrollviewIconSize"
-                    android:layout_height="@dimen/scrollviewIconSize"
-                    android:textAlignment="center"
-                    app:srcCompat="@mipmap/ic_beerglass"
-                    />
+            </android.support.v7.widget.RecyclerView>
             </LinearLayout>
-        </HorizontalScrollView>
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -132,8 +65,24 @@
                 android:layout_alignBottom="@+id/NumOfDrinks"
                 android:layout_marginStart="19dp"
                 android:layout_toEndOf="@+id/NumOfDrinks"
-                android:max="8"
+                android:foregroundTint="@color/white"
+                android:max="7"
+                android:maxHeight="2dip"
+                android:minHeight="2dip"
                 />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/howmanyseekbar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="30dp"
+                android:foregroundGravity="center"
+                android:text="1"
+                android:textSize="20sp" />
+
 
             <TextView
                 android:id="@+id/whenhappened"
@@ -154,9 +103,10 @@
                 android:layout_alignStart="@+id/howmanyseekbar"
                 android:layout_alignTop="@+id/whenhappened"
                 android:layout_marginTop="6dp"
-                android:text="Just Now"
+                android:text="Now?"
+                android:textColor="@color/white"
                 android:textOff="Now?"
-                android:textOn="Just Now" />
+                android:textOn="Now?" />
 
             <Button
                 android:id="@+id/selectTimeButton"
@@ -203,6 +153,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/TimePickerLayout"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_alignTop="@+id/selectTimeButton"
+                android:layout_marginTop="26dp"
+                android:layout_toEndOf="@+id/justNowButton">
+
+            </FrameLayout>
 
 
         </RelativeLayout>

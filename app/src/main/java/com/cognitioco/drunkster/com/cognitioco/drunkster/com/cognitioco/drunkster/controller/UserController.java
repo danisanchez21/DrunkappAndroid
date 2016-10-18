@@ -4,6 +4,8 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.model.User;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.UserDAO;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.UserDAOInterface;
 
+import java.util.List;
+
 /**
  * Created by dasan on 10/15/2016.
  */
@@ -39,5 +41,9 @@ public class UserController implements UserDAOInterface {
     @Override
     public User retrieveUserByName(User user) {
         return dao.retrieveUserByName(user);
+    }
+
+    public List<User> retirveAll() {
+        return dao.retrieveUsers();
     }
 }

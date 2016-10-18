@@ -2,24 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="90dp"
     android:layout_height="120dp"
-    android:background="@android:color/transparent"
+    android:background="@drawable/selected_background"
     android:orientation="vertical">
-
 
     <ImageButton
         android:id="@+id/imageListViewButton"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/selected_background"
         android:scaleType="fitXY">
 
     </ImageButton>
 
     <TextView
         android:id="@+id/imageListViewSubtitle"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:gravity="center"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_gravity="bottom"
         android:text="TextView"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 </LinearLayout>
+

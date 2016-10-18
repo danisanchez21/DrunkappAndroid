@@ -18,6 +18,35 @@ public class DrinkController implements DrinkDAOSkeleton {
         dao = new DrinkDAO();
     }
 
+    public static double calculateBAC(double _weight, int _sex, int _numberofdrinks, int _time, double proof, double volume) {
+
+        double sexRate = 0;
+        if (_sex == 1) {
+            sexRate = 0.66;
+        } else {
+            sexRate = 0.73;
+        }
+
+        /*double ouncesConsumed = ((proof / 2) /100) * 5.14;
+        double part1 = ouncesConsumed / (_weight * sexRate);
+        double bac = part1 - (0.015 * _time);*/
+
+
+        int alcoholdose = _numberofdrinks * 14; //14 is equivalent to the amount of alcohol in grams present in a standard drink.
+
+        double WeightinGrams = _weight * 454; //454 is the amount of grams in 1lbs.
+
+        double RawBAC = WeightinGrams * sexRate; //Weight in grams multiplied by the gender constant.
+
+        double alcoholConsumed = alcoholdose / RawBAC;
+
+        double BACpercentage = alcoholConsumed * 100;
+
+        double CurrentBAC = BACpercentage - (_time * 0.015f);
+
+        return CurrentBAC;
+    }
+
     @Override
     public void createDrink(Drink drink) {
         dao.createDrink(drink);

@@ -20,31 +20,31 @@ public class RegistryController implements RegistryDAOInterface {
 
     @Override
     public void createRegistry(Registry reg) {
-
+        dao.createRegistry(reg);
     }
 
     @Override
     public void updateRegistry(Registry reg) {
-
+        dao.createRegistry(reg);
     }
 
     @Override
     public void deleteRegistry(Registry reg) {
-
+        dao.deleteRegistry(reg);
     }
 
     @Override
     public void deleteAllRegistries() {
-
+        dao.deleteAllRegistries();
     }
 
     @Override
     public Registry retrieveRegistryById(Registry reg) {
-        return null;
+        return dao.retrieveRegistryById(reg);
     }
 
     @Override
     public List<Registry> retrieveAllRegistries() {
-        return null;
+        return dao.retrieveAllRegistries();
     }
 }

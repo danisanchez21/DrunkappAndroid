@@ -4,6 +4,7 @@ import com.orm.SugarRecord;
 import com.orm.dsl.Ignore;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -18,26 +19,29 @@ public class Registry extends SugarRecord {
 
 
     @Ignore
-    private Date timeTaken;
+    private Calendar timeTaken;
     private int numOfDrinks;
+    private Feeling feeling;
 
     public Registry(){}
 
-    public Registry(long id, Drink drink, double currentBAC, Date timeTaken, int numOfDrinks) {
+    public Registry(long id, Drink drink, double currentBAC, Calendar timeTaken, int numOfDrinks) {
         setId(id);
         this.drink = drink;
         this.currentBAC = currentBAC;
 
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("yyyyy-mm-dd hh:mm:ss");
         this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
         this.numOfDrinks = numOfDrinks;
     }
 
-    public Registry(Drink drink, double currentBAC, Date timeTaken, int numOfDrinks) {
+    public Registry(Drink drink, double currentBAC, Calendar timeTaken, int numOfDrinks) {
         this.drink = drink;
         this.currentBAC = currentBAC;
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("yyyy-mm-dd hh:mm:ss");
         this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
         this.numOfDrinks = numOfDrinks;
@@ -76,7 +80,7 @@ public class Registry extends SugarRecord {
 
     public Date getTimeTaken() {
 
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         try {
             return format.parse(timeTakenDB);
         } catch (Exception e) {
@@ -85,10 +89,11 @@ public class Registry extends SugarRecord {
 
     }
 
-    public void setTimeTaken(Date timeTaken) {
+    public void setTimeTaken(Calendar timeTaken) {
 
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
-        this.timeTakenDB = format.format(timeTaken);
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("yyyy-mm-dd hh:mm:ss");
+        this.timeTakenDB = format.format(timeTaken.getTime());
         this.timeTaken = timeTaken;
     }
 
@@ -98,6 +103,14 @@ public class Registry extends SugarRecord {
 
     public void setNumOfDrinks(int numOfDrinks) {
         this.numOfDrinks = numOfDrinks;
+    }
+
+    public Feeling getFeeling() {
+        return feeling;
+    }
+
+    public void setFeeling(Feeling feeling) {
+        this.feeling = feeling;
     }
 
     @Override

@@ -1,31 +1,32 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.model;
 
 import com.orm.SugarRecord;
+import com.orm.dsl.Ignore;
 
 import java.util.Date;
 
 
 public class User extends SugarRecord
 {
-    public enum Sex{
-        MALE,
-        FEMALE
-    }
-
     private String name;
     private Date birthDate;
     private double weight;
+    @Ignore
     private Sex sex;
+    private int sexDB;
     private String prefferedTaxiService;
     private String emergencyNumber;
 
-    public User(){};
+    public User() {
+    }
 
     public User(long id, String name, Date birthDate, double weight, Sex sex, String prefferedTaxiService, String emergencyNumber) {
         setId(id);
         this.name = name;
         this.birthDate = birthDate;
         this.weight = weight;
+        if (sex == Sex.FEMALE) sexDB = 1;
+        else if (sex == Sex.MALE) sexDB = 0;
         this.sex = sex;
         this.prefferedTaxiService = prefferedTaxiService;
         this.emergencyNumber = emergencyNumber;
@@ -35,6 +36,8 @@ public class User extends SugarRecord
         this.name = name;
         this.birthDate = birthDate;
         this.weight = weight;
+        if (sex == Sex.FEMALE) sexDB = 1;
+        else if (sex == Sex.MALE) sexDB = 0;
         this.sex = sex;
     }
 
@@ -75,6 +78,7 @@ public class User extends SugarRecord
     }
 
     public Sex getSex() {
+
         return sex;
     }
 
@@ -98,11 +102,13 @@ public class User extends SugarRecord
         this.emergencyNumber = emergencyNumber;
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ///Utilities
-    ///
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+    public int getSexDB() {
+        return sexDB;
+    }
 
+    public void setSexDB(int sexDB) {
+        this.sexDB = sexDB;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -120,6 +126,11 @@ public class User extends SugarRecord
         return emergencyNumber != null ? emergencyNumber.equals(user.emergencyNumber) : user.emergencyNumber == null;
 
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ///Utilities
+    ///
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public int hashCode() {
@@ -146,6 +157,11 @@ public class User extends SugarRecord
                 ", prefferedTaxiService='" + prefferedTaxiService + '\'' +
                 ", emergencyNumber='" + emergencyNumber + '\'' +
                 '}';
+    }
+
+    public enum Sex {
+        MALE,
+        FEMALE
     }
 
 

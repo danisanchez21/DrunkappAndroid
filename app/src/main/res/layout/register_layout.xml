@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/registerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/feelingImageRegister"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:layout_weight="0.03"
+        app:srcCompat="@mipmap/ic_sleeping" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.11"
+        android:background="@android:color/transparent">
+
+
+        <TextView
+            android:id="@+id/staticDrinkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="14dp"
+            android:text="Drink - "
+            android:textColor="@color/gray"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/feelingRegisterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/staticDrinkText"
+            android:layout_marginTop="6dp"
+            android:text="Feeling Sleepy"
+            android:textColor="@color/gray"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/DrinkText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/staticDrinkText"
+            android:layout_toEndOf="@+id/staticDrinkText"
+            android:text="TextView"
+            android:textColor="@color/light_gray"
+            android:textSize="15sp"></TextView>
+
+        <TextView
+            android:id="@+id/BAClabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/feelingRegisterLabel"
+            android:layout_alignBottom="@+id/feelingRegisterLabel"
+            android:layout_marginStart="13dp"
+            android:layout_toEndOf="@+id/feelingRegisterLabel"
+            android:text="TextView"
+            android:textColor="@color/light_gray"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/TimeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/feelingRegisterLabel"
+            android:layout_marginTop="14dp"
+            android:text="TextView"
+            android:textColor="@color/light_gray"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</LinearLayout>
