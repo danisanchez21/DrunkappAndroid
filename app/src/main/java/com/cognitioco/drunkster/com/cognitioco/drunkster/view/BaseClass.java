@@ -1,5 +1,6 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.view;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +21,7 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkste
 
 public class BaseClass extends AppCompatActivity implements
         ProgressBarFragment.OnMainFragmentInteractionListener, AddDrinkFragment.OnAddDrinkFragment, RegisterFragment.OnRegisterFragmentInteractionListener,
-        UserSettings.OnUserFragmentInteractionListener {
+        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener {
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -29,6 +30,7 @@ public class BaseClass extends AppCompatActivity implements
     SharedPreferences prefs;
     ProgressBarFragment progressFragment;
     UserSettings userFragment;
+    GameFragment gameFragment;
 
     RegistryController regController;
 
@@ -157,11 +159,15 @@ public class BaseClass extends AppCompatActivity implements
                     if (userFragment == null) {
                         userFragment = new UserSettings();
 
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, userFragment, "UserFragment").addToBackStack("UserFragment").commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, userFragment, "UserFragment").addToBackStack(null).commit();
                     } else {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, userFragment, "UserFragment").addToBackStack("UserFragment").commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, userFragment, "UserFragment").addToBackStack(null).commit();
                     }
                     drawerLayout.closeDrawer(GravityCompat.START);
+                } else if (id == R.id.navMenuReflexGame) {
+                    Intent intent = new Intent(getBaseContext(), GameActivity.class);
+                    startActivity(intent);
+
                 }
                 return false;
             }
@@ -198,5 +204,10 @@ public class BaseClass extends AppCompatActivity implements
     @Override
     public void onUserFragmentInteraction(Uri uri) {
         //do Nothing for now
+    }
+
+    @Override
+    public void onGameFragmentInteraction(Uri uri) {
+
     }
 }

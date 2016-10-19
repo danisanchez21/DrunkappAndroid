@@ -1,29 +1,38 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.cognitioco.drunkster.com.cognitioco.drunkster.view.BaseClass" >
+    tools:context="com.cognitioco.drunkster.com.cognitioco.drunkster.view.BaseClass">
 <group android:checkableBehavior="single">
     <item
         android:id="@+id/addDrink"
+        android:icon="@mipmap/beer_nobackground"
         android:orderInCategory="0"
-        android:title="@string/AddDrink"
-        android:icon="@mipmap/beer_nobackground"/>
+        android:title="@string/AddDrink" />
     <item
         android:id="@+id/registryButtonMenu"
+        android:icon="@mipmap/ic_glass"
         android:orderInCategory="1"
-        android:title="@string/Registry"
-        android:icon="@mipmap/ic_glass"/>
+        android:title="@string/Registry" />
     <item
         android:id="@+id/historyButton"
+        android:icon="@mipmap/ic_clock"
         android:orderInCategory="2"
         android:title="@string/History"
-        android:icon="@mipmap/ic_clock"
         />
     <item
         android:id="@+id/settingsButton"
+        android:icon="@mipmap/ic_settings"
         android:orderInCategory="3"
-        android:title="@string/Settings"
-        android:icon="@mipmap/ic_settings"/>
+        android:title="@string/Settings" />
+    <item
+        android:id="@+id/navMenuReflexGame"
+        android:icon="@mipmap/ic_flash"
+        android:orderInCategory="4"
+        android:title="Test your Reflex" />
+    <item
+        android:id="@+id/navMenuRefreshGame"
+        android:icon="@mipmap/ic_refresh"
+        android:orderInCategory="5"
+        android:title="Reset Session" />
 </group>
 
 
