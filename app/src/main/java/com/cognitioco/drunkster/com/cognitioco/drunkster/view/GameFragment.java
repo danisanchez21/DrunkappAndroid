@@ -1,12 +1,16 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cognitioco.drunkster.R;
 
@@ -19,15 +23,32 @@ import com.cognitioco.drunkster.R;
  * Use the {@link GameFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GameFragment extends Fragment {
+public class GameFragment extends Fragment implements GameListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private int score;
+    private int rounds;
+    private int misses;
+
+    private int width;
+    private int height;
+
+    private TextView textScore;
+    private TextView textMisses;
+
+    private GameView gameView;
+
+    private CountDownTimer timer;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Vibrator vib;
+    private AlertDialog.Builder dialog;
 
     private OnGameFragmentInteractionListener mListener;
     private View.OnClickListener listener = new View.OnClickListener() {
@@ -38,7 +59,8 @@ public class GameFragment extends Fragment {
     };
 
     public GameFragment() {
-        // Required empty public constructor
+
+
     }
 
     /**
@@ -72,9 +94,37 @@ public class GameFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_game, container, false);
+
+        textScore = (TextView) v.findViewById(R.id.scorelabel);
+        textMisses = (TextView) v.findViewById(R.id.missesLabel);
+        v.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        gameView = (GameView) v.findViewById(R.id.gameViewInside);
+        gameView.setSelectionListener(this);
+
+        vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+
+        timer = new CountDownTimer(10000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                gameView.invalidate();
+            }
+
+            @Override
+            public void onFinish() {
+                vib.vibrate(100);
+                getFragmentManager().popBackStack();
+                if (score <= 0) {
+
+                } else {
+
+                }
 
 
-        return inflater.inflate(R.layout.fragment_game, container, false);
+            }
+        }.start();
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -105,6 +155,23 @@ public class GameFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onUserSelection(boolean correct) {
+        if (correct) {
+            score += 1;
+            if (score > 3) {
+                score = 0;
+            } else {
+                textScore.setText(String.valueOf(score));
+            }
+
+        } else {
+            misses += 1;
+            textMisses.setText(String.valueOf(misses));
+            vib.vibrate(50);
+        }
     }
 
     /**

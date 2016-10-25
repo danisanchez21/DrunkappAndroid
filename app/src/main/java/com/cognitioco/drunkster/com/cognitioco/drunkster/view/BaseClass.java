@@ -1,6 +1,5 @@
 package com.cognitioco.drunkster.com.cognitioco.drunkster.view;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -165,8 +164,13 @@ public class BaseClass extends AppCompatActivity implements
                     }
                     drawerLayout.closeDrawer(GravityCompat.START);
                 } else if (id == R.id.navMenuReflexGame) {
-                    Intent intent = new Intent(getBaseContext(), GameActivity.class);
-                    startActivity(intent);
+
+
+                    gameFragment = new GameFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, gameFragment, null).addToBackStack(null).commit();
+
+
+                    drawerLayout.closeDrawer(GravityCompat.START);
 
                 }
                 return false;
