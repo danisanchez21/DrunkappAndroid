@@ -39,6 +39,7 @@
         <meta-data
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.cognitioco.drunkster.com.cognitioco.drunkster.model" />
+            -->
 
         <activity android:name=".com.cognitioco.drunkster.view.GameActivity"></activity>
     </application>

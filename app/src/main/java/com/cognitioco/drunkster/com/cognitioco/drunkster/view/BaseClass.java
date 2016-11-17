@@ -20,7 +20,7 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkste
 
 public class BaseClass extends AppCompatActivity implements
         ProgressBarFragment.OnMainFragmentInteractionListener, AddDrinkFragment.OnAddDrinkFragment, RegisterFragment.OnRegisterFragmentInteractionListener,
-        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener {
+        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener, Chart.OnFragmentChart {
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -146,11 +146,11 @@ public class BaseClass extends AppCompatActivity implements
                 } else if (id == R.id.registryButtonMenu) {
 
                     if (registerFragment == null) {
-                        registerFragment = new RegisterFragment();
+                        Chart testchart = new Chart();
 
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, registerFragment, "registerFragment").addToBackStack(null).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, testchart, "registerFragment").addToBackStack(null).commit();
                     } else {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, registerFragment, "registerFragment").addToBackStack(null).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.chartfragment, registerFragment, "registerFragment").addToBackStack(null).commit();
                     }
                     drawerLayout.closeDrawer(GravityCompat.START);
                 } else if (id == R.id.settingsButton) {
@@ -212,6 +212,11 @@ public class BaseClass extends AppCompatActivity implements
 
     @Override
     public void onGameFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onFragmentChart(Uri uri) {
 
     }
 }

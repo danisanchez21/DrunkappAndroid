@@ -85,7 +85,7 @@ public class AddDrinkFragment extends Fragment implements ItemChanged {
 
             User user = userController.retirveAll().get(0);
 
-            reg.setCurrentBAC(DrinkController.calculateBAC(user.getWeight(), user.getSexDB(), numOfDrinks, hour, drink.getDrinkProof(), drink.getVolume()));
+            reg.setCurrentBAC(DrinkController.calculateBAC(user.getWeight(), user.getSexDB(), numOfDrinks, drink.getDrinkProof(), drink.getVolume()));
             reg.setDrink(drink);
             reg.setNumOfDrinks(numOfDrinks);
             reg.setTimeTaken(timeTaken);

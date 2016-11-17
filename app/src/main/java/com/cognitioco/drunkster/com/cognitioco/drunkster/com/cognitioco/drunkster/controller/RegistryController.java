@@ -47,4 +47,10 @@ public class RegistryController implements RegistryDAOInterface {
     public List<Registry> retrieveAllRegistries() {
         return dao.retrieveAllRegistries();
     }
+
+    public List<Registry> retrieveAllOrderbyDate()
+    {
+        return
+                Registry.findWithQuery(Registry.class, "Select * from Registry order by time_taken_db asc");
+    }
 }

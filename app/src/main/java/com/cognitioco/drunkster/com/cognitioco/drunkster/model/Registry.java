@@ -31,7 +31,7 @@ public class Registry extends SugarRecord {
         this.currentBAC = currentBAC;
 
         SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("yyyyy-mm-dd hh:mm:ss");
+        format.applyPattern("hh:mm:ss yyyyy-mm-dd");
         this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
         this.numOfDrinks = numOfDrinks;
@@ -41,7 +41,7 @@ public class Registry extends SugarRecord {
         this.drink = drink;
         this.currentBAC = currentBAC;
         SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("yyyy-mm-dd hh:mm:ss");
+        format.applyPattern("hh:mm:ss yyyyy-mm-dd");
         this.timeTakenDB = format.format(timeTaken);
         this.timeTaken = timeTaken;
         this.numOfDrinks = numOfDrinks;
@@ -80,7 +80,7 @@ public class Registry extends SugarRecord {
 
     public Date getTimeTaken() {
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("hh:mm:ss yyyy-mm-dd");
         try {
             return format.parse(timeTakenDB);
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class Registry extends SugarRecord {
     public void setTimeTaken(Calendar timeTaken) {
 
         SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("yyyy-mm-dd hh:mm:ss");
+        format.applyPattern("hh:mm:ss yyyy-mm-dd");
         this.timeTakenDB = format.format(timeTaken.getTime());
         this.timeTaken = timeTaken;
     }

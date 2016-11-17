@@ -38,4 +38,6 @@ public class RegistryDAO implements RegistryDAOInterface
         return Registry.listAll(Registry.class);
     }
 
+
+
 }
