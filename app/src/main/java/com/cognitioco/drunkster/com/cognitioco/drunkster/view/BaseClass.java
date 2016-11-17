@@ -20,7 +20,7 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkste
 
 public class BaseClass extends AppCompatActivity implements
         ProgressBarFragment.OnMainFragmentInteractionListener, AddDrinkFragment.OnAddDrinkFragment, RegisterFragment.OnRegisterFragmentInteractionListener,
-        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener, Chart.OnFragmentChart {
+        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener, Chart.OnFragmentChart, ContactsDisplaySettings.OnContactSettingsFragmentInteractionListener {
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -30,6 +30,7 @@ public class BaseClass extends AppCompatActivity implements
     ProgressBarFragment progressFragment;
     UserSettings userFragment;
     GameFragment gameFragment;
+    ContactsDisplaySettings contactSettingsFragment;
 
     RegistryController regController;
 
@@ -146,11 +147,14 @@ public class BaseClass extends AppCompatActivity implements
                 } else if (id == R.id.registryButtonMenu) {
 
                     if (registerFragment == null) {
-                        Chart testchart = new Chart();
+                        //Chart testchart = new Chart();
 
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, testchart, "registerFragment").addToBackStack(null).commit();
+                        
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, testchart, "registerFragment").addToBackStack(null).commit();
+						getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, registerFragment, "registerFragment").addToBackStack(null).commit();
                     } else {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.chartfragment, registerFragment, "registerFragment").addToBackStack(null).commit();
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.chartfragment, registerFragment, "registerFragment").addToBackStack(null).commit();
+						getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, registerFragment, "registerFragment").addToBackStack(null).commit();
                     }
                     drawerLayout.closeDrawer(GravityCompat.START);
                 } else if (id == R.id.settingsButton) {
@@ -172,6 +176,20 @@ public class BaseClass extends AppCompatActivity implements
 
                     drawerLayout.closeDrawer(GravityCompat.START);
 
+                }
+                else if (id == R.id.btn_contactsOpen)
+                {
+                    contactSettingsFragment = new ContactsDisplaySettings();
+                    if (contactSettingsFragment == null)
+                    {
+                        contactSettingsFragment = new ContactsDisplaySettings();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, contactSettingsFragment, "ContactSettingsFragment").addToBackStack(null).commit();
+
+                    }
+                    else {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, contactSettingsFragment, "ContactSettingsFragment").addToBackStack(null).commit();
+                    }
+                    drawerLayout.closeDrawer(GravityCompat.START);
                 }
                 return false;
             }

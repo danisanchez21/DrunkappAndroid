@@ -6,7 +6,7 @@
     android:background="@android:color/transparent"
     tools:context=".com.cognitioco.drunkster.view.UserSettings">
 
-    <!-- TODO: Update blank fragment layout -->
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_below="@+id/spin_taxiservice"
             android:layout_marginTop="50dp"
             android:layout_toStartOf="@+id/spin_taxiservice"
-            android:text="Emergency Contact"
+            android:text="Quick Contacts"
             android:textSize="14sp" />
 
         <TextView
@@ -172,6 +172,14 @@
             android:layout_below="@+id/lbl_age"
             android:text="T"
             android:textSize="18sp" />
+
+        <Button
+            android:text="View / Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_contactsOpen"
+            android:layout_alignTop="@+id/lbl_contact"
+            android:layout_alignStart="@+id/spin_taxiservice" />
 
     </RelativeLayout>
 </FrameLayout>
