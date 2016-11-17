@@ -20,7 +20,7 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkste
 
 public class BaseClass extends AppCompatActivity implements
         ProgressBarFragment.OnMainFragmentInteractionListener, AddDrinkFragment.OnAddDrinkFragment, RegisterFragment.OnRegisterFragmentInteractionListener,
-        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener {
+        UserSettings.OnUserFragmentInteractionListener, GameFragment.OnGameFragmentInteractionListener, ContactsDisplaySettings.OnContactSettingsFragmentInteractionListener {
 
     ActionBarDrawerToggle actionBarDrawerToggle;
     DrawerLayout drawerLayout;
@@ -30,6 +30,7 @@ public class BaseClass extends AppCompatActivity implements
     ProgressBarFragment progressFragment;
     UserSettings userFragment;
     GameFragment gameFragment;
+    ContactsDisplaySettings contactSettingsFragment;
 
     RegistryController regController;
 
@@ -172,6 +173,20 @@ public class BaseClass extends AppCompatActivity implements
 
                     drawerLayout.closeDrawer(GravityCompat.START);
 
+                }
+                else if (id == R.id.btn_contactsOpen)
+                {
+                    contactSettingsFragment = new ContactsDisplaySettings();
+                    if (contactSettingsFragment == null)
+                    {
+                        contactSettingsFragment = new ContactsDisplaySettings();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, contactSettingsFragment, "ContactSettingsFragment").addToBackStack(null).commit();
+
+                    }
+                    else {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, contactSettingsFragment, "ContactSettingsFragment").addToBackStack(null).commit();
+                    }
+                    drawerLayout.closeDrawer(GravityCompat.START);
                 }
                 return false;
             }

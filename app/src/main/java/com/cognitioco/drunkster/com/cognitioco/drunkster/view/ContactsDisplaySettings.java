@@ -16,7 +16,7 @@ import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkste
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ContactsDisplaySettings.OnFragmentInteractionListener} interface
+ * {@link ContactsDisplaySettings.OnContactSettingsFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link ContactsDisplaySettings#newInstance} factory method to
  * create an instance of this fragment.
@@ -31,11 +31,13 @@ public class ContactsDisplaySettings extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnContactSettingsFragmentInteractionListener mListener;
     private ContactController controller;
 
-    public ContactsDisplaySettings() {
+    public ContactsDisplaySettings()
+    {
         // Required empty public constructor
+        controller = new ContactController();
     }
 
     /**
@@ -47,11 +49,11 @@ public class ContactsDisplaySettings extends Fragment {
      * @return A new instance of fragment ContactsDisplaySettings.
      */
     // TODO: Rename and change types and number of parameters
-    public static ContactsDisplaySettings newInstance(String param1, String param2) {
+    public static ContactsDisplaySettings newInstance(String param1) {
         ContactsDisplaySettings fragment = new ContactsDisplaySettings();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        //args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -91,8 +93,8 @@ public class ContactsDisplaySettings extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnContactSettingsFragmentInteractionListener) {
+            mListener = (OnContactSettingsFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -115,7 +117,7 @@ public class ContactsDisplaySettings extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnContactSettingsFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }

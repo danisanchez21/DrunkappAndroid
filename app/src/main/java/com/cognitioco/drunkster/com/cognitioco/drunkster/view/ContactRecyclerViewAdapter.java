@@ -44,8 +44,11 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
     public void onBindViewHolder(ContactViewHolder holder, int position)
     {
         // Check if list exists
+        // TODO: check if List Exists/has 5 entries
 
         // Fill out contactLayouts
+
+        /*
 
         holder.contactIndex.setText(position + 1); //Set contact index number to position in list +1.
         String cName = mList.get(position).getName();
@@ -66,6 +69,7 @@ public class ContactRecyclerViewAdapter extends RecyclerView.Adapter<ContactRecy
             holder.btnAdd.setVisibility(View.VISIBLE);
             holder.btnDelete.setVisibility(View.INVISIBLE);
         }
+        */
     }
 
     public int getItemCount() { return mList.size();}

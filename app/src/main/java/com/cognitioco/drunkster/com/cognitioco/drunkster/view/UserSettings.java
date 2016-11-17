@@ -93,13 +93,21 @@ public class UserSettings extends Fragment {
         }
 
     };
+
     private View.OnClickListener listenerContact = new View.OnClickListener()
     {
         @Override
         public void onClick(View v)
         {
-            ContactsDisplaySettings CDS = new ContactsDisplaySettings() ;
-            getFragmentManager().beginTransaction().add(R.id.fragmentContactsDisplay, CDS);
+            // TODO: Correct fragment_contacts_display loading. Crashes on each attempt.
+            /*ContactsDisplaySettings CDS = new ContactsDisplaySettings() ;
+            getFragmentManager().beginTransaction().add(R.id.fragmentContactsDisplay, CDS).addToBackStack(null).commit();*/
+
+            /*ContactsDisplaySettings CDS= new ContactsDisplaySettings();
+            getActivity().getFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContactsDisplay, CDS, "TAG_FRAGMENT")
+                    .addToBackStack(null)
+                    .commit();*/
         }
     };
 
@@ -141,7 +149,7 @@ public class UserSettings extends Fragment {
         View v = inflater.inflate(R.layout.fragment_user_settings, container, false);
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.btn_save);
         fab.setOnClickListener(listener);
-        Button btnContact = (Button) v.findViewById(R.id.btn_contatcsOpen);
+        Button btnContact = (Button) v.findViewById(R.id.btn_contactsOpen);
         btnContact.setOnClickListener(listenerContact);
 
         UserController userc = new UserController();
