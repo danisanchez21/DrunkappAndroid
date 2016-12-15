@@ -189,7 +189,7 @@ public class BaseClass extends AppCompatActivity implements
                     else {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentFrame, contactSettingsFragment, "ContactSettingsFragment").addToBackStack(null).commit();
                     }
-                    drawerLayout.closeDrawer(GravityCompat.START);
+                    //drawerLayout.closeDrawer(GravityCompat.START);
                 }
                 return false;
             }

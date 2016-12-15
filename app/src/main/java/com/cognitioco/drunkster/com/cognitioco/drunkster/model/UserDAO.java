@@ -33,4 +33,7 @@ public class UserDAO implements UserDAOInterface {
     public List<User> retrieveUsers() {
         return User.listAll(User.class);
     }
+
+    /*@Override
+    public void setNewPrefferedTaxiService(String newservice) {}*/
 }

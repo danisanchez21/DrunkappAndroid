@@ -7,7 +7,6 @@
     tools:context=".com.cognitioco.drunkster.view.UserSettings">
 
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -142,7 +141,10 @@
             android:layout_alignStart="@+id/tf_username"
             android:layout_below="@+id/lbl_age"
             android:layout_marginStart="23dp"
-            android:layout_marginTop="67dp" />
+            android:layout_marginTop="67dp"
+
+
+            android:spinnerMode="dropdown" />
 
         <SeekBar
             android:id="@+id/bar_age"

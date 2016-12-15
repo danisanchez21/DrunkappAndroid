@@ -11,4 +11,5 @@ public interface UserDAOInterface {
     void deleteUser(User user);
     User retrieveUserById(User user);
     User retrieveUserByName(User user);
+    //void setNewPrefferedTaxiService(String newservice);
 }

@@ -15,12 +15,13 @@ public class User extends SugarRecord
     private Sex sex;
     private int sexDB;
     private String prefferedTaxiService;
+    private int prefferedTaxiServicePosition;
     private String emergencyNumber;
 
     public User() {
     }
 
-    public User(long id, String name, int age, double weight, Sex sex, String prefferedTaxiService, String emergencyNumber) {
+    public User(long id, String name, int age, double weight, Sex sex, String prefferedTaxiService, int prefferedTaxiServicePosition, String emergencyNumber) {
         setId(id);
         this.name = name;
         this.age = age;
@@ -29,6 +30,7 @@ public class User extends SugarRecord
         else if (sex == Sex.MALE) sexDB = 0;
         this.sex = sex;
         this.prefferedTaxiService = prefferedTaxiService;
+        this.prefferedTaxiServicePosition = 0;
         this.emergencyNumber = emergencyNumber;
     }
 
@@ -94,6 +96,12 @@ public class User extends SugarRecord
         this.prefferedTaxiService = prefferedTaxiService;
     }
 
+    public int getPrefferedTaxiServicePosition() { return prefferedTaxiServicePosition;}
+
+    public void setPrefferedTaxiServicePosition(int _position) {
+        this.prefferedTaxiServicePosition = _position;
+    }
+
     public String getEmergencyNumber() {
         return emergencyNumber;
     }
@@ -142,6 +150,7 @@ public class User extends SugarRecord
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + sex.hashCode();
         result = 31 * result + (prefferedTaxiService != null ? prefferedTaxiService.hashCode() : 0);
+        result = 31 * result + prefferedTaxiServicePosition;
         result = 31 * result + (emergencyNumber != null ? emergencyNumber.hashCode() : 0);
         return result;
     }
@@ -155,6 +164,7 @@ public class User extends SugarRecord
                 ", weight=" + weight +
                 ", sex=" + sex +
                 ", prefferedTaxiService='" + prefferedTaxiService + '\'' +
+                ", prefferedTaxiServicePosition='" + prefferedTaxiServicePosition + '\'' +
                 ", emergencyNumber='" + emergencyNumber + '\'' +
                 '}';
     }
