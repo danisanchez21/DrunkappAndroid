@@ -46,4 +46,7 @@ public class UserController implements UserDAOInterface {
     public List<User> retirveAll() {
         return dao.retrieveUsers();
     }
+
+    /*@Override
+    public void setNewPrefferedTaxiService(String newservice) {dao.setNewPrefferedTaxiService(newservice);}*/
 }

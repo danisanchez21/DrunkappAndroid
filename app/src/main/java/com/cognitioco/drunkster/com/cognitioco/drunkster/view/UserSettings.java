@@ -14,6 +14,8 @@ import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 
 import com.cognitioco.drunkster.R;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.UserController;
@@ -101,7 +103,7 @@ public class UserSettings extends Fragment {
         {
             // TODO: Correct fragment_contacts_display loading. Crashes on each attempt.
             /*ContactsDisplaySettings CDS = new ContactsDisplaySettings() ;
-            getFragmentManager().beginTransaction().add(R.id.fragmentContactsDisplay, CDS).addToBackStack(null).commit();*/
+            getFragmentManager().beginTransaction().add(R.id.fragmentContactsDisplay, CDS, null).addToBackStack(null).commit();*/
 
             /*ContactsDisplaySettings CDS= new ContactsDisplaySettings();
             getActivity().getFragmentManager().beginTransaction()
@@ -170,6 +172,13 @@ public class UserSettings extends Fragment {
         RadioButton maleButton = (RadioButton) v.findViewById(R.id.radio_male);
         RadioButton femaleButton = (RadioButton) v.findViewById(R.id.radio_female);
 
+        //fill spinner values
+        Spinner taxi = (Spinner) v.findViewById((R.id.spin_taxiservice));
+        ArrayAdapter<CharSequence> taxiadapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.taxi_spinner_list, android.R.layout.simple_spinner_item);
+        taxiadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        taxi.setAdapter(taxiadapter);
+
         if (user.getSexDB() == 1) {
             femaleButton.setSelected(true);
         } else {
@@ -181,6 +190,8 @@ public class UserSettings extends Fragment {
         age.setProgress(user.getAge());
         weight.setOnSeekBarChangeListener(seekbarWeightListener);
         age.setOnSeekBarChangeListener(seekbarAgeListener);
+        //set spinner place to previously entered value
+        taxi.setSelection(user.getPrefferedTaxiServicePosition());
 
         return v;
     }
@@ -246,6 +257,16 @@ public class UserSettings extends Fragment {
         {
             newSettings.setSex(User.Sex.FEMALE);
         }
+
+
+        //save spinner position and text
+        Spinner spinner = (Spinner)getView().findViewById(R.id.spin_taxiservice);
+        String selectedItemAsText = spinner.getSelectedItem().toString();
+        int selectedItemAsInt = spinner.getSelectedItemPosition();
+
+        newSettings.setPrefferedTaxiService(selectedItemAsText);
+        //newSettings.setPrefferedTaxiServicePosition(spinner.getSelectedItemPosition());
+        newSettings.setPrefferedTaxiServicePosition(selectedItemAsInt);
 
         usercontroller.updateUser(newSettings);
 

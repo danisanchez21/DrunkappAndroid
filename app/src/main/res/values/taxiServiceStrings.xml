@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="taxi_spinner_list">
+        <item>No Service</item>
+        <item>Uber</item>
+        <item>Lyft</item>
+    </string-array>
+
+</resources>
+

@@ -7,15 +7,27 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.content.pm.PackageManager;
+import android.content.pm.ApplicationInfo;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.os.Build;
+import android.os.Handler;
 
 import com.cognitioco.drunkster.R;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.RegistryController;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.com.cognitioco.drunkster.controller.UserController;
 import com.cognitioco.drunkster.com.cognitioco.drunkster.model.Registry;
+import com.cognitioco.drunkster.com.cognitioco.drunkster.model.User;
 
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +44,41 @@ public class ProgressBarFragment extends Fragment implements DrinkAddedListener 
         @Override
         public void onClick(View v) {
             onAddDrinkPressed();
+        }
+    };
+    private View.OnClickListener uberListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = getContext().getPackageManager().getLaunchIntentForPackage("com.ubercab");
+            if (intent == null)
+                return;
+            List<ResolveInfo> list = getContext().getPackageManager().queryIntentActivities(intent,
+                    PackageManager.MATCH_DEFAULT_ONLY);
+            if(list.size() > 0)
+            {
+                Intent LaunchApp = getContext().getPackageManager().getLaunchIntentForPackage("com.ubercab");
+                startActivity( LaunchApp );
+            }
+
+        }
+    };
+    private View.OnClickListener lyftListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            Intent intent = getContext().getPackageManager().getLaunchIntentForPackage("me.lyft.android");
+            if (intent == null)
+                return;
+            List<ResolveInfo> list = getContext().getPackageManager().queryIntentActivities(intent,
+                    PackageManager.MATCH_DEFAULT_ONLY);
+            if(list.size() > 0)
+            {
+                Intent LaunchApp = getContext().getPackageManager().getLaunchIntentForPackage("me.lyft.android");
+                startActivity( LaunchApp );
+            }
         }
     };
     private FragmentManager.OnBackStackChangedListener backStackListener = new FragmentManager.OnBackStackChangedListener() {
@@ -78,6 +125,8 @@ public class ProgressBarFragment extends Fragment implements DrinkAddedListener 
         FloatingActionButton addDrinkFAB = (FloatingActionButton) v.findViewById(R.id.addDrinkButton);
         addDrinkFAB.setOnClickListener(clickReact);
 
+
+
         ProgressBar pb = (ProgressBar) v.findViewById(R.id.circle_progress_bar);
         List<Registry> list = regcontroller.retrieveAllRegistries();
 
@@ -98,6 +147,41 @@ public class ProgressBarFragment extends Fragment implements DrinkAddedListener 
 
         th.start();
 
+        //Check User for selected taxi service and set to visible
+        UserController userc = new UserController();
+        User user = userc.retirveAll().get(0);
+
+        FloatingActionButton uberFAB = (FloatingActionButton) v.findViewById(R.id.btn_openUber);
+        uberFAB.setOnClickListener(uberListener);
+        FloatingActionButton lyftFAB = (FloatingActionButton) v.findViewById(R.id.btn_openLyft);
+        lyftFAB.setOnClickListener(lyftListener);
+
+        if (user.getPrefferedTaxiServicePosition() == 1 && bac > 0.04)
+        {
+            //make uber button visible
+            uberFAB.show();
+            lyftFAB.hide();
+
+            forceRippleAnimation(uberFAB);
+        }
+        else if (user.getPrefferedTaxiServicePosition() == 2 && bac > 0.04)
+        {
+            //make lyft button visible
+            uberFAB.hide();
+            lyftFAB.show();
+
+            forceRippleAnimation(lyftFAB);
+
+            //RippleDrawable rippledraw = new RippleDrawable();
+            //RippleDrawable.setState(new int[] { android.R.attr.state_pressed, android.R.attr.state_enabled });
+        }
+        else
+        {
+            //make all taxi buttons invisible
+            uberFAB.hide();
+            lyftFAB.hide();
+        }
+
 
         return v;
     }
@@ -107,6 +191,13 @@ public class ProgressBarFragment extends Fragment implements DrinkAddedListener 
             mListener.onAddDrinkPressed();
         }
     }
+    /*public void onUberPressed()
+    {
+        if (mListener != null)
+        {
+            mListener.onUberPressed();
+        }
+    }*/
 
 
 
@@ -195,4 +286,26 @@ public class ProgressBarFragment extends Fragment implements DrinkAddedListener 
             return (int) percentage;
         }
     }
+    protected void forceRippleAnimation(View view)
+    {
+        Drawable background = view.getBackground();
+
+        if(Build.VERSION.SDK_INT >= 21 && background instanceof RippleDrawable)
+        {
+            final RippleDrawable rippleDrawable = (RippleDrawable) background;
+
+            rippleDrawable.setState(new int[]{android.R.attr.state_pressed, android.R.attr.state_enabled});
+
+            Handler handler = new Handler();
+
+            handler.postDelayed(new Runnable()
+            {
+                @Override public void run()
+                {
+                    rippleDrawable.setState(new int[]{});
+                }
+            }, 900000000);
+        }
+    }
+
 }
